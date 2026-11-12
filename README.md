@@ -74,6 +74,10 @@ by Linus Boman.
 
 ## Acknowledgments
 
+Thanks to Pieter van Mill for the first working ExecuVision slide converter,
+[pcmill/vcn-execuvision-slide-format-converter](https://github.com/pcmill/vcn-execuvision-slide-format-converter),
+which provided a format reference for this project.
+
 Thanks to OpenAI Codex for collaborating on the design, implementation, testing,
 and documentation of this project.
 
