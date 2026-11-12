@@ -12,6 +12,7 @@ assert.equal(createHash('sha256').update(image.pixels).digest('hex'),meta.pixels
 const png=await read('matrix.png');let packed=[],colors;
 assert.equal(png.readUInt32BE(16),300);assert.equal(png.readUInt32BE(20),200);assert.equal(png[25],3);
 for(let pos=8;pos<png.length;){const length=png.readUInt32BE(pos),type=png.toString('ascii',pos+4,pos+8),data=png.subarray(pos+8,pos+8+length);if(type==='IDAT')packed.push(data);if(type==='PLTE')colors=data;pos+=12+length}
+assert.deepEqual(meta.palette,EV.cgaPalette(0,0,1));
 assert.deepEqual([...colors],meta.palette.flat());
 const scan=inflateSync(Buffer.concat(packed));
 for(let y=0;y<200;y++){assert.equal(scan[y*301],0);assert.deepEqual([...scan.subarray(y*301+1,y*301+301)],[...image.pixels.subarray(y*300,(y+1)*300)])}

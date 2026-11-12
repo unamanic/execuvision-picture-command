@@ -8,9 +8,9 @@ modular version, keep the files in `web/` together.
 
 ## Try the demo
 
-**Load demo** opens a built-in 300 × 200 digital-rain image with its green palette.
+**Load demo** opens a built-in 300 × 200 digital-rain image in CGA palette 0 (high intensity, black background).
 It replaces the current collection. **Download demo .EV** saves the demo file;
-select **Digital green** when opening that file manually. Try different palettes,
+use the **Green / red** preset when opening that file manually. Try different palettes,
 zoom, or PNG export without supplying your own graphics.
 
 ## Open graphics
@@ -40,7 +40,7 @@ Escape clears the search, and Tab moves between controls.
 
 ## Choose colors and export
 
-Choose CGA colors, grayscale, or Digital green. In CGA mode, select a background color,
+Choose CGA colors or grayscale. In CGA mode, select a background color,
 foreground colors, and intensity. **Palette presets & color values** offers
 ready-made palettes, a reset button, and exact hexadecimal color values.
 The selected palette may differ from the original colors.
