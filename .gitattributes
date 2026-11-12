@@ -1,0 +1,6 @@
+* text=auto eol=lf
+web/vendor/7z/* -text
+*.png -text
+*.wasm -text
+*.tar.gz -text
+*.tar.xz -text

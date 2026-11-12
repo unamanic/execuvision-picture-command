@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src blob:; style-src 'self'; img-src data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>ExecuVision / Picture Command</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="execuvision.js"></script>
+  <script defer src="zip-reader.js"></script>
+  <script defer src="sevenzip-assets.js"></script>
+  <script defer src="sevenzip-reader.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to graphics workspace</a>
+  <header>
+    <a class="brand" href="#title" aria-label="ExecuVision Picture desk home">
+      <span class="mark" aria-hidden="true">EV</span>
+      <span>EXECUVISION<small>GRAPHICS VIEWER & PNG EXPORT</small></span>
+    </a>
+    <div class="header-status"><span class="system-label">VIEW · ADJUST · EXPORT</span><span class="privacy"><span aria-hidden="true">■</span> OFFLINE CAPABLE · NO UPLOADS</span></div>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <div class="briefing">
+        <span class="eyebrow">EXECUVISION GRAPHICS VIEWER</span>
+        <h1 id="title">PICTURE<br><em>COMMAND<span aria-hidden="true">_</span></em></h1>
+        <p>Open ExecuVision files and archives.<br>Browse graphics, choose colors, and save PNGs.</p>
+        <div class="system-spec"><span>EV · ZIP · 7Z</span><span>COLOR PALETTES</span><span>PNG EXPORT</span></div>
+      </div>
+      <div class="drop" id="drop">
+        <div class="drop-heading"><span class="eyebrow">01 / OPEN FILES</span><span class="drive-label">LOCAL FILES</span></div>
+        <div class="media-prompt"><div class="file-icon" aria-hidden="true">.EV</div><div><h2>OPEN YOUR GRAPHICS</h2><p>Drop .EV files, ZIPs, or 7z archives here.</p></div></div>
+        <label class="button primary" for="files">OPEN FILES / ZIP / 7Z <span aria-hidden="true">↵</span></label>
+        <input id="files" type="file" multiple accept=".ev,.EV,.toc,.TOC,.zip,.ZIP,.7z,.7Z">
+        <small>Archives open directly. Include the matching .TOC files to display graphic names.</small>
+      </div>
+    </section>
+
+    <section id="workspace" class="workspace" aria-label="Picture workspace">
+      <aside class="library" aria-label="Graphics collection">
+        <div class="section-head"><h2><span class="panel-number">02</span> COLLECTION</h2><button id="clear" class="text-button" disabled>Clear collection</button></div>
+        <div class="directory-body">
+          <label class="search-label" for="search">FIND A GRAPHIC</label>
+          <div class="search-field"><input id="search" type="search" placeholder="Name, file or disk…" autocomplete="off" spellcheck="false" aria-controls="fileList" aria-describedby="fileCount" disabled><button id="clearSearch" type="button" aria-label="Clear search" hidden>×</button></div>
+          <p id="fileCount" class="muted" role="status" aria-live="polite">No graphics loaded.</p>
+          <details class="directory-filters"><summary>Filter & sort</summary><label class="search-label" for="kindFilter">GRAPHIC TYPE</label><select id="kindFilter"><option value="all">All graphics</option><option value="1">Slides</option><option value="2">Pictures</option></select>
+          <label class="search-label" for="sortOrder">DIRECTORY ORDER</label><select id="sortOrder"><option value="original">Disk order</option><option value="title">Title A–Z</option><option value="file">Filename</option><option value="size">Largest first</option></select>
+          <label class="search-label" for="diskFilter">SOURCE DISK</label><select id="diskFilter"><option value="all">All disks</option></select>
+          <button id="resetFilters" class="text-button" type="button">Reset filters</button></details>
+          <p id="selectionNotice" class="selection-notice" hidden>The displayed graphic is hidden by your filters. Choose a result or reset filters.</p>
+          <label class="check"><input id="favoritesOnly" type="checkbox"> Favorites only</label>
+          <p id="collectionStats" class="muted">Mark favorites to create a shortlist.</p>
+          <div id="fileList" class="file-list"></div>
+          <p id="noMatches" class="no-matches" hidden>No matching graphics.<br>Try another search or reset your filters.</p>
+          <p class="fine">Opening new files replaces this collection and its favorites.</p>
+        </div>
+      </aside>
+      <div class="preview">
+        <div class="section-head"><h2><span class="panel-number">03</span> <span id="pictureName">SELECT A GRAPHIC</span></h2><span id="dimensions" class="muted">—</span></div>
+        <div class="viewer-tools"><button id="previous" type="button" disabled>← Previous</button><span id="position">0 / 0</span><button id="next" type="button" disabled>Next →</button></div>
+          <div class="display-tools"><label>Preview zoom <select id="zoom"><option value="fit">Fit</option><option value="1">1×</option><option value="2">2×</option><option value="3">3×</option></select></label>
+          <label>Preview background <select id="stageTheme"><option value="grid">Tactical grid</option><option value="black">Solid black</option><option value="light">Light gray</option></select></label>
+          <button id="focusMode" type="button" aria-pressed="false">Focus on graphic</button>
+          <button id="favorite" type="button" disabled aria-pressed="false">☆ Mark favorite</button>
+          </div><div id="stage" class="stage">
+          <div id="empty" class="empty">
+            <div class="target" aria-hidden="true"><span></span></div>
+            <span class="eyebrow">GRAPHIC PREVIEW</span>
+            <h3>OPEN FILES TO BEGIN</h3>
+            <p>Choose an EV file, ZIP, or 7z archive.<br>Your graphics will appear here.</p>
+          </div>
+          <canvas id="canvas" hidden aria-label="Selected ExecuVision graphic"></canvas>
+        </div>
+        <details class="image-details"><summary>Graphic details</summary><p id="sourceInfo">Select a graphic to see its filename, source, and dimensions.</p></details>
+          <div class="preview-footer"><span id="imageInfo">Zoom and display proportions affect the preview only.</span><label><input id="aspect" type="checkbox"> 4:3 preview</label></div>
+      </div>
+    </section>
+
+    <section class="palette-panel" aria-label="Color and export controls">
+      <div class="palette-title"><span class="eyebrow">04 / COLOR CONTROL</span><h2>CHOOSE COLORS</h2><p>Apply a palette to the preview and PNG export.</p></div>
+      <div class="control"><label for="mode">COLOR MODE</label><select id="mode"><option value="cga">CGA color</option><option value="gray">Grayscale</option></select></div>
+      <div class="control"><label for="background">BACKGROUND COLOR</label><select id="background"></select></div>
+      <div class="control"><label for="family">FOREGROUND COLORS</label><select id="family"><option value="0">Green · red · brown</option><option value="1" selected>Cyan · magenta · gray</option></select><label class="check"><input id="intensity" type="checkbox" checked> High intensity</label></div>
+      <div class="export"><div id="swatches" class="swatches" aria-label="Current four colors"></div><button id="download" class="button primary" disabled>SAVE PNG <span aria-hidden="true">↓</span></button><small id="exportNote">PNG at original pixel dimensions</small></div>
+    </section>
+    <details class="shortcut-help"><summary>Keyboard shortcuts</summary><p>/ — Find a graphic<br>← / → — Browse results<br>Escape — Clear search<br>Tab — Move between controls</p></details>
+          <details class="advanced-tools"><summary>Palette presets & color values</summary><p id="paletteValues" class="palette-values"></p>
+          <button id="resetPalette" type="button">Reset palette</button>
+          <label class="search-label" for="preset">PALETTE PRESETS</label><select id="preset"><option value="">Choose a palette…</option><option value="cga1">Cyan / magenta</option><option value="cga0">Green / red</option><option value="map">Blue-background map</option><option value="gray">Grayscale</option></select>
+          </details><div id="importProgress" hidden><label for="progress">Reading local files</label><progress id="progress" max="1" value="0"></progress><button id="cancelImport" type="button">Cancel import</button>
+          <span id="progressText"></span></div>
+          <button id="saveMetadata" type="button" disabled>Save details (JSON)</button>
+          <p id="filenamePreview" class="muted">Select a graphic to export.</p>
+          <div class="status-line"><span aria-hidden="true">&gt;</span><div id="status" role="status" aria-live="polite">Open EV files, ZIPs, or 7z archives to get started.</div></div>
+    <details id="errors"><summary id="errorSummary">Files that could not be opened</summary><button id="saveErrors" type="button">Save warning report</button>
+          <ul id="errorList"></ul></details>
+    <footer>
+      <div><strong>EXPORT THE GRAPHIC YOU NEED</strong><p>Save a PNG at the graphic’s original pixel dimensions using your selected colors. Zoom, preview background, and display proportions affect only the preview. The selected palette may differ from the original colors.</p></div>
+      <div><strong>YOUR FILES STAY ON YOUR DEVICE</strong><p>Files open in your browser and are never uploaded. Your source files stay unchanged. The collection and favorites last until you clear them, open another batch, or close the page.</p><a href="7z-License.txt">7z decoder license</a> · <a href="README.md">Help & file formats ↗</a><details class="license"><summary>Third-party MIT notice</summary><pre>MIT License
+
+Copyright (c) 2026 Pieter van Mill
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</pre></details></div>
+    </footer>
+  </main>
+</body>
+</html>

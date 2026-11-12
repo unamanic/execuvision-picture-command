@@ -1,0 +1,13 @@
+{
+  "name": "execuvision-picture-command",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local ExecuVision graphics viewer and PNG exporter",
+  "scripts": {
+    "test": "node tests/test_web_decoder.js && node tests/test_zip_reader.js && node tests/test_sevenzip.js && node tests/test_site.js",
+    "build": "python3 tools/build_site.py"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

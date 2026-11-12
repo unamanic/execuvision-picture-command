@@ -1,0 +1,16 @@
+dist/
+web/sevenzip-assets.js
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+.env*
+samples/
+results/
+*.EV
+*.ev
+*.img
+*.ima
+*.scp
+*.7z
+*.zip
