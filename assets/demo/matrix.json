@@ -1,0 +1,30 @@
+{
+  "name": "MATRIX.EV",
+  "title": "DIGITAL RAIN",
+  "width": 300,
+  "height": 200,
+  "palette": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      85,
+      0
+    ],
+    [
+      0,
+      170,
+      0
+    ],
+    [
+      85,
+      255,
+      85
+    ]
+  ],
+  "pixelsSha256": "3024a40401539631ce18fb567f75c1aab90e87d4d1cd2db4033d904ec715af3d",
+  "description": "AI-generated Matrix-inspired demo. Four-tone green palette; synthetic kind-2 EV raster, verified in Picture Command. Original ExecuVision application compatibility is unverified."
+}

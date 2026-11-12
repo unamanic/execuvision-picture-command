@@ -4,12 +4,12 @@ const $=id=>document.getElementById(id);
 let entries=[],selected=-1,generation=0;
 const colorNames=['Black','Blue','Green','Cyan','Red','Magenta','Brown','Light gray','Dark gray','Light blue','Light green','Light cyan','Light red','Light magenta','Yellow','White'];
 colorNames.forEach((n,i)=>$('background').add(new Option(n,String(i))));
-function palette(){return $('mode').value==='gray'?ExecuVision.grayscalePalette():ExecuVision.cgaPalette(+$('background').value,+$('family').value,+$('intensity').checked)}
+function palette(){return $('mode').value==='green'?EV_DEMO.palette:$('mode').value==='gray'?ExecuVision.grayscalePalette():ExecuVision.cgaPalette(+$('background').value,+$('family').value,+$('intensity').checked)}
 function showStatus(s){$('status').textContent=s}
 function updatePalette(){
  const p=palette();$('paletteValues').textContent=p.map((rgb,i)=>`${i}: #${rgb.map(v=>v.toString(16).padStart(2,'0')).join('')}`).join('  /  ');$('swatches').replaceChildren();
  p.forEach((rgb,i)=>{const s=document.createElement('span');s.textContent=String(i);s.style.backgroundColor=`rgb(${rgb.join(',')})`;s.style.color=(rgb[0]*.299+rgb[1]*.587+rgb[2]*.114)>140?'#111':'#fff';s.title=`Index ${i}: ${rgb.join(', ')}`;$('swatches').append(s)});
- const disabled=$('mode').value==='gray';for(const id of ['background','family','intensity'])$(id).disabled=disabled;
+ const disabled=$('mode').value!=='cga';for(const id of ['background','family','intensity'])$(id).disabled=disabled;
  render();
 }
 function render(){
@@ -131,5 +131,15 @@ $('cancelImport').onclick=()=>{generation++;if(typeof EVSevenZip!=='undefined')E
 function downloadText(name,text,type='text/plain'){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 $('saveErrors').onclick=()=>downloadText('execuvision-import-warnings.txt',Array.from($('errorList').children).map(e=>e.textContent).join('\n'));
 $('saveMetadata').onclick=()=>{if(selected<0)return;const e=entries[selected];downloadText(e.name+'.json',JSON.stringify({title:e.title||e.name,file:e.name,source:e.source,width:e.image.width,height:e.image.height,kind:e.image.kind===1?'SLIDE':'PIX',palette:palette(),paletteStatus:'User-selected colors; may differ from original colors'},null,2),'application/json')};
-function exportFilename(){if(selected<0)return '';const e=entries[selected];const title=(e.title||'').replace(/[^a-zA-Z0-9_-]+/g,'-').replace(/^-|-$/g,'').slice(0,60);return (title?title+'-':'')+e.name.replace(/[^a-zA-Z0-9._-]/g,'_').replace(/\.ev$/i,'')+'-'+($('mode').value==='gray'?'grayscale':'cga')+'-crisp.png'}
+function exportFilename(){if(selected<0)return '';const e=entries[selected];const title=(e.title||'').replace(/[^a-zA-Z0-9_-]+/g,'-').replace(/^-|-$/g,'').slice(0,60);return (title?title+'-':'')+e.name.replace(/[^a-zA-Z0-9._-]/g,'_').replace(/\.ev$/i,'')+'-'+($('mode').value==='gray'?'grayscale':$('mode').value==='green'?'green':'cga')+'-crisp.png'}
+function demoBytes(){return Uint8Array.from(atob(EV_DEMO.base64),c=>c.charCodeAt(0))}
+$('loadDemo').onclick=async()=>{
+ const bytes=demoBytes(),expected=generation+1;
+ await loadFiles([{name:EV_DEMO.name,size:bytes.length,arrayBuffer:async()=>bytes.buffer}]);
+ if(generation!==expected||!entries.length)return;
+ entries[0].title=EV_DEMO.title;entries[0].source='Built-in demo';
+ $('mode').value='green';$('zoom').value='fit';$('aspect').checked=false;
+ rebuildList();updatePalette();showStatus('Demo loaded. Try palettes and zoom, or save a PNG.');
+};
+$('saveDemo').onclick=()=>downloadText(EV_DEMO.name,demoBytes(),'application/octet-stream');
 updatePalette();

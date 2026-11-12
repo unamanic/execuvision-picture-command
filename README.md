@@ -16,7 +16,18 @@ Open ExecuVision graphics, browse collections, choose colors, and export PNGs—
 
 Files are processed on your device. No uploads, account, analytics, or network processing.
 Source files stay unchanged; collections and favorites last for the current session.
-No sample archives or disk images are included. The screenshot illustrates the interface.
+An original AI-generated demo is included. No historical sample archives or disk images are included. The screenshot illustrates the interface.
+
+## Try the demo
+
+Choose **Load demo** in the app to open a Matrix-inspired digital-rain graphic at
+300 × 200 pixels. It uses four green tones and is embedded in the offline build.
+
+[Download the .EV demo](https://unamanic.github.io/execuvision-picture-command/demo/MATRIX.EV)
+· [PNG preview](assets/demo/matrix.png)
+
+The EV file stores pixel indices; select **Digital green** after importing it
+manually to reproduce the green colors. Other palettes also work.
 
 ## Use locally
 

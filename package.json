@@ -4,7 +4,7 @@
   "private": true,
   "description": "Local ExecuVision graphics viewer and PNG exporter",
   "scripts": {
-    "test": "node tests/test_web_decoder.js && node tests/test_zip_reader.js && node tests/test_sevenzip.js && node tests/test_site.js && node tests/test_build.mjs",
+    "test": "node tests/test_web_decoder.js && node tests/test_zip_reader.js && node tests/test_sevenzip.js && node tests/test_site.js && node tests/test_build.mjs && node tests/test_demo.mjs",
     "build": "node tools/build_site.mjs",
     "pretest": "npm run build",
     "preview": "node tools/preview.mjs"

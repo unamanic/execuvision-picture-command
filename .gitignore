@@ -14,3 +14,6 @@ results/
 *.scp
 *.7z
 *.zip
+
+web/demo.js
+!assets/demo/MATRIX.EV
