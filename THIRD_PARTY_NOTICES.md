@@ -18,5 +18,5 @@ License: GNU LGPL 2.1 or later plus the unRAR restriction.
 - [unRAR restriction](web/vendor/7z/unRarLicense.txt)
 - [Corresponding source and replacement instructions](third_party/README.md)
 
-The artwork visible in the README screenshot is separate from the software's licenses.
+The README walkthrough uses an original AI-generated demo; its provenance is documented in [assets/demo/README.md](assets/demo/README.md).
 No historical graphics libraries are distributed with the application.

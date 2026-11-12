@@ -9,8 +9,7 @@ pixels and four colors. `MATRIX.EV` and `matrix.png` contain identical pixel ind
 
 CGA palette 0, high intensity, black background: `#000000`, `#55ff55`,
 `#ff5555`, `#ffff55`. EV files contain pixel indices; choose the **Green / red**
-preset in Picture Command to reproduce these colors. Load demo selects these
-standard CGA settings automatically.
+preset in Picture Command after opening `MATRIX.EV` to reproduce these colors.
 The EV has been verified in Picture Command; compatibility with the original
 ExecuVision application has not been tested.
 

@@ -4,7 +4,7 @@ Open ExecuVision graphics, browse collections, choose colors, and export PNGs—
 
 **[Open the app](https://unamanic.github.io/execuvision-picture-command/)**
 
-![ExecuVision Picture Command showing a graphics collection](assets/screenshot.png)
+![ExecuVision Picture Command displaying the CGA digital-rain demo](assets/screenshot.jpg)
 
 ## Features
 
@@ -16,18 +16,29 @@ Open ExecuVision graphics, browse collections, choose colors, and export PNGs—
 
 Files are processed on your device. No uploads, account, analytics, or network processing.
 Source files stay unchanged; collections and favorites last for the current session.
-An original AI-generated demo is included. No historical sample archives or disk images are included. The screenshot illustrates the interface.
+The walkthrough uses an original AI-generated demo graphic. No historical sample archives or disk images are included.
 
-## Try the demo
+## Demo walkthrough
 
-Choose **Load demo** in the app to open a Matrix-inspired digital-rain graphic at
-300 × 200 pixels. It uses CGA palette 0 (high intensity, black background) and is embedded in the offline build.
+Download [MATRIX.EV](https://unamanic.github.io/execuvision-picture-command/demo/MATRIX.EV)
+to follow along with this 300 × 200 CGA graphic.
 
-[Download the .EV demo](https://unamanic.github.io/execuvision-picture-command/demo/MATRIX.EV)
-· [PNG preview](assets/demo/matrix.png)
+1. **Open the file.** Choose **Open files / ZIP / 7Z** and select `MATRIX.EV`,
+   or drag it onto the page. The graphic appears in the collection and preview.
+   EV files store pixel indices, so the initial colors use your current palette.
 
-The EV file stores pixel indices; choose the **Green / red** palette preset after
-importing it manually to reproduce the demo colors.
+![MATRIX.EV imported with the default cyan and magenta CGA palette](assets/walkthrough/01-open.jpg)
+
+2. **Choose colors.** Expand **Palette presets & color values** and choose
+   **Green / red**. This sets CGA palette 0, high intensity, with a black background.
+   Use **Preview zoom** or **Focus on graphic** to inspect the pixels.
+
+![The demo with the Green / red CGA preset and color controls](assets/walkthrough/02-colors.jpg)
+
+3. **Export a PNG.** Choose **Save PNG** below the color controls.
+   The saved image stays at 300 × 200 pixels, regardless of preview zoom.
+
+![Exported 300 by 200 CGA demo](assets/demo/matrix.png)
 
 ## Use locally
 
@@ -69,8 +80,7 @@ and documentation of this project.
 ## License
 
 The original project code is licensed under the [MIT License](LICENSE),
-Copyright © 2026 William Witt. Bundled third-party software and the historical
-artwork shown in the screenshot retain their own licenses and rights.
+Copyright © 2026 William Witt. Bundled third-party software retains its own licenses; see the notices below.
 
 ## Third-party software
 

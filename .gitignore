@@ -15,5 +15,4 @@ results/
 *.7z
 *.zip
 
-web/demo.js
 !assets/demo/MATRIX.EV

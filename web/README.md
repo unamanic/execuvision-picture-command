@@ -6,13 +6,6 @@ Files stay on your device. No account, server, or internet connection is needed.
 The single-file version is `dist/ExecuVision-Picture-Desk.html`. If you use the
 modular version, keep the files in `web/` together.
 
-## Try the demo
-
-**Load demo** opens a built-in 300 × 200 digital-rain image in CGA palette 0 (high intensity, black background).
-It replaces the current collection. **Download demo .EV** saves the demo file;
-use the **Green / red** preset when opening that file manually. Try different palettes,
-zoom, or PNG export without supplying your own graphics.
-
 ## Open graphics
 
 Choose or drop `.EV` files, `.ZIP` files, or `.7z` archives. Archives containing

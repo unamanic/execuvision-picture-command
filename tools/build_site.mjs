@@ -5,7 +5,6 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { buildSevenZip } from './build_sevenzip.mjs';
-import { buildDemo } from './build_demo.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const web = resolve(root, 'web');
@@ -15,11 +14,10 @@ const token = text => `'sha256-${createHash('sha256').update(text).digest('base6
 
 await mkdir(out, { recursive: true });
 await buildSevenZip();
-await buildDemo();
 let html = await readText(resolve(web, 'index.html'));
 const css = await readText(resolve(web, 'style.css'));
 const js = (await Promise.all([
-  'sevenzip-assets.js', 'sevenzip-reader.js', 'execuvision.js', 'zip-reader.js', 'demo.js', 'app.js'
+  'sevenzip-assets.js', 'sevenzip-reader.js', 'execuvision.js', 'zip-reader.js', 'app.js'
 ].map(name => readText(resolve(web, name))))).join('\n');
 const license = await readText(resolve(root, 'LICENSE'));
 // Callbacks preserve literal dollar signs in embedded code and styles.
