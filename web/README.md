@@ -64,6 +64,10 @@ no archive contents are uploaded or written to disk during import.
 
 ## Licenses
 
+The original application code is licensed under the MIT License,
+Copyright © 2026 William Witt. See `LICENSE` in the repository or distribution.
+Bundled dependencies retain the licenses listed below.
+
 The graphics decoder incorporates format information corroborated with
 pcmill/vcn-execuvision-slide-format-converter, MIT © 2026 Pieter van Mill.
 See the MIT notice in the app or `pcmill-MIT.txt` in the distribution.

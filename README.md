@@ -51,6 +51,17 @@ provides information about the original software and its graphics libraries.
 This project was inspired by [Why Clip Art Was Everywhere... Until It Wasn't](https://www.youtube.com/watch?v=XfLlpxE6AYM)
 by Linus Boman.
 
+## Acknowledgments
+
+Thanks to OpenAI Codex for collaborating on the design, implementation, testing,
+and documentation of this project.
+
+## License
+
+The original project code is licensed under the [MIT License](LICENSE),
+Copyright © 2026 William Witt. Bundled third-party software and the historical
+artwork shown in the screenshot retain their own licenses and rights.
+
 ## Third-party software
 
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the decoder acknowledgments
