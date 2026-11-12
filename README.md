@@ -25,15 +25,14 @@ and open it in a current browser. For controls, supported formats, and limits, s
 
 ## Development
 
-Requires Python 3.10+ and Node.js 22+. There are no package dependencies to install.
+Requires Node.js 22+. There are no package dependencies to install.
 
 ```sh
-npm test
-npm run build
-python3 -m http.server 8000 --directory dist
+npm test        # Builds the site and runs all tests
+npm run preview # Serves dist/ at http://127.0.0.1:8000
 ```
 
-Open http://localhost:8000. The build embeds the scripts, styles, and 7z decoder
+Use `npm run build` to build without running tests. The build embeds the scripts, styles, and 7z decoder
 in `dist/index.html` and creates the downloadable single-file version.
 Tests use generated fixtures; private graphics libraries are not required.
 

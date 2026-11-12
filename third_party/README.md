@@ -19,6 +19,6 @@ The Dockerfile's old 7-zip.org source URL no longer works; use the supplied
 instead. The unmodified Dockerfile records the upstream toolchain setup.
 
 To use a rebuilt or modified decoder, replace `web/vendor/7z/7zz.umd.js` and
-`web/vendor/7z/7zz.wasm`, then run `python3 tools/build_site.py`. This regenerates
+`web/vendor/7z/7zz.wasm`, then run `node tools/build_site.mjs`. This regenerates
 the embedded worker and standalone HTML. No application signing or secret is
 required. The upstream library licenses permit modification under their terms.
